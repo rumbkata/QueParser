@@ -4,6 +4,6 @@ class TreeNode
 private:
 
 public:
-    virtual int eval() = 0;
+    virtual int eval()const = 0;
 };
 
