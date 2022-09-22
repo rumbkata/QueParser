@@ -25,21 +25,24 @@ static Parser::TreeNode* parse(const std::string& str)
 static TreeNode* Parser::parseF(const std::string& str, int& index)
 {
     
-    if(consume(str, index, '('))
+    if(consume(str, index, '(')) // F -> (F)
     {
         TreeNode* result = parseF(str, index);
         if(!consume(str, index, ')'))
             //throw invalid input exception
         return result;
     }
-    if(consume(str, index, '+'))
+    if(consume(str, index, '+')) //F -> +F
         return parseF(str, index);
-    if(consume(str, index, '-'))
+    if(consume(str, index, '-'))// F -> -BR
     {
         TreeNode* parsed = new Negation(parseB(str, index));
-        //parseR and compose
+        return ParseR(str, index, parsed);
     }
-
+    //default case: F -> BR 
+    //wrong input will be dealt with in parseB call
+    TreeNode* parsed = parseB(str, index);
+    return ParseR(str, index, parsed);
 }
 
 static void Parser::parseB(const std::string& str, int& index)
@@ -50,7 +53,8 @@ static void Parser::parseB(const std::string& str, int& index)
 static void Parser::parseR(const std::string& str, int& index, TreeNode*& leftSide)
 {
     skipSpaces();
-    
+
+
 }
 
 static void Parser::parseI(const std::string& str, int& index)
