@@ -38,12 +38,12 @@ TreeNode *Parser::parseF(const std::string &str, int &index)
     if (consume(str, index, '-')) // F -> -BR
     {
         TreeNode *parsed = new Negation(parseB(str, index));
-        return ParseR(str, index, parsed);
+        return parseR(str, index, parsed);
     }
     // default case: F -> BR
     // wrong input will be dealt with in parseB call
     TreeNode *parsed = parseB(str, index);
-    return ParseR(str, index, parsed);
+    return parseR(str, index, parsed);
 }
 
 TreeNode *Parser::parseB(const std::string &str, int &index)
