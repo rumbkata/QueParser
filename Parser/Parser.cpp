@@ -63,15 +63,21 @@ static TreeNode *Parser::parseB(const std::string &str, int &index)
     return nullptr;
 }
 
-static TreeNode* Parser::parseR(const std::string &str, int &index, TreeNode *&leftSide)
+static TreeNode *Parser::parseR(const std::string &str, int &index, TreeNode *&leftSide)
 {
     skipSpaces(str, index);
-    if (consume(str, index, '+'))
-        return new Addition()
-    if (consume(str, index, '-'))
-    if (consume(str, index, '*'))
-    if (consume(str, index, '/'))
-
+    if (consume(str, index, '+')) // R -> +BR
+        return parseR(str, index, new Addition(leftSide, parseB(str, index)));
+    if (consume(str, index, '-')) // R -> -BR
+        return parseR(str, index, new Addition(leftSide, new Negation(parseB(str, index))));
+    if (consume(str, index, '*')) // R -> *BR
+        return parseR(str, index, new Multiplication(leftSide, parseB(str, index)));
+    if (consume(str, index, '/')) // R -> /BR
+        return parseR(str, index, new Division(leftSide, parseB(str, index)));
+    if (index == str.length())
+        return leftSide;
+    // throw invalid input exception
+    return nullptr;
 }
 
 static void Parser::parseI(const std::string &str, int &index)
