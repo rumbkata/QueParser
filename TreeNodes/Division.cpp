@@ -7,10 +7,10 @@ Division::Division(TreeNode*& first, TreeNode*& second)
 }
 int Division::eval()const
 {
-    secondValue = second->eval();
+    int secondValue = second->eval();
     if (secondValue == 0)
     {
         //throw division by zero exception
     }
-    return first->eval() / second->eval();
+    return first->eval() / secondValue;
 }
