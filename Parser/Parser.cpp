@@ -9,22 +9,25 @@ static bool Parser::consume(const std::string& str, int& index,const char& x)
     }
     return false;
 }
+static void Parser::skipSpaces(const std::string& str, int& index)
+{
+    while(consume(str, index, ' '));
+}
 
 static Parser::TreeNode* parse(const std::string& str)
 {
     int index = 0;
-    while(consume(str, index, ' ')); //skip spaces
+    skipSpaces();
     TreeNode* result = parseF(str, index);
     return result == nullptr ? new Number(0) : result;
 }
 
 static TreeNode* Parser::parseF(const std::string& str, int& index)
 {
-    while(consume(str, index, ' ')); //skip spaces
-    TreeNode* result = nullptr;
+    
     if(consume(str, index, '('))
     {
-        result = parseF(str, index);
+        TreeNode* result = parseF(str, index);
         if(!consume(str, index, ')'))
             //throw invalid input exception
         return result;
@@ -33,7 +36,8 @@ static TreeNode* Parser::parseF(const std::string& str, int& index)
         return parseF(str, index);
     if(consume(str, index, '-'))
     {
-        retur
+        TreeNode* parsed = new Negation(parseB(str, index));
+        //parseR and compose
     }
 
 }
@@ -43,9 +47,10 @@ static void Parser::parseB(const std::string& str, int& index)
 
 }
 
-static void Parser::parseR(const std::string& str, int& index)
+static void Parser::parseR(const std::string& str, int& index, TreeNode*& leftSide)
 {
-
+    skipSpaces();
+    
 }
 
 static void Parser::parseI(const std::string& str, int& index)
