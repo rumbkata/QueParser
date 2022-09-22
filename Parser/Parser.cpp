@@ -82,5 +82,17 @@ static TreeNode *Parser::parseR(const std::string &str, int &index, TreeNode *&l
 
 static void Parser::parseI(const std::string &str, int &index)
 {
-    skipSpaces(str, index);
+    std::string result(str.at(index++));
+    while (isDigit(str.at(index)))
+    {
+        result.append(str.at(index++), 0, 1);
+    }
+    // calculate the number
+    int number = 0;
+    int power = 0;
+    for (size_t i = result.length - 1; i >= 0; i--)
+    {
+        number += result.at(i) * pow(10, power++);
+    }
+    return new Number(number);
 }
