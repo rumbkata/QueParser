@@ -8,6 +8,6 @@ private:
     TreeNode* term;
     Negation();
 public:
-    Negation(TreeNode*& term);
+    Negation(TreeNode*&);
     int eval()const override;
 };

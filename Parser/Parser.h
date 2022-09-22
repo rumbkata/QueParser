@@ -21,9 +21,4 @@ public:
     static TreeNode *parse(const std::string &);
 
 private:
-    class Negation;
-    class Division;
-    class Number;
-    class Addition;
-    class Multiplication;
 };

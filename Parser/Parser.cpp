@@ -1,6 +1,6 @@
 #include "Parser.h"
 
-static bool Parser::consume(const std::string &str, int &index, const char &x)
+bool Parser::consume(const std::string &str, int &index, const char &x)
 {
     if (str.at(index) == x)
     {
@@ -9,20 +9,20 @@ static bool Parser::consume(const std::string &str, int &index, const char &x)
     }
     return false;
 }
-static void Parser::skipSpaces(const std::string &str, int &index)
+void Parser::skipSpaces(const std::string &str, int &index)
 {
     while (consume(str, index, ' '))
         ;
 }
 
-static Parser::TreeNode *parse(const std::string &str)
+TreeNode *Parser::parse(const std::string &str)
 {
     int index = 0;
     TreeNode *result = parseF(str, index);
     return result == nullptr ? new Number(0) : result;
 }
 
-static TreeNode *Parser::parseF(const std::string &str, int &index)
+TreeNode *Parser::parseF(const std::string &str, int &index)
 {
     skipSpaces(str, index);
     if (consume(str, index, '(')) // F -> (F)
@@ -45,7 +45,7 @@ static TreeNode *Parser::parseF(const std::string &str, int &index)
     return ParseR(str, index, parsed);
 }
 
-static TreeNode *Parser::parseB(const std::string &str, int &index)
+TreeNode *Parser::parseB(const std::string &str, int &index)
 {
     skipSpaces(str, index);
     if (consume(str, index, '('))
@@ -63,7 +63,7 @@ static TreeNode *Parser::parseB(const std::string &str, int &index)
     return nullptr;
 }
 
-static TreeNode *Parser::parseR(const std::string &str, int &index, TreeNode *&leftSide)
+TreeNode *Parser::parseR(const std::string &str, int &index, TreeNode *&leftSide)
 {
     skipSpaces(str, index);
     if (consume(str, index, '+')) // R -> +BR
@@ -80,7 +80,7 @@ static TreeNode *Parser::parseR(const std::string &str, int &index, TreeNode *&l
     return nullptr;
 }
 
-static void Parser::parseI(const std::string &str, int &index)
+void Parser::parseI(const std::string &str, int &index)
 {
     std::string result;
     while (isDigit(str.at(index)))
