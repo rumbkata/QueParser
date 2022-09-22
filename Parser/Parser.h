@@ -1,6 +1,7 @@
 #pragma once
-#include <string>
+#include<string>
 #include "../TreeNodes/*.h"
+#include<math.h>
 
 class Parser
 {
