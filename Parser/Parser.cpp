@@ -18,14 +18,13 @@ static void Parser::skipSpaces(const std::string &str, int &index)
 static Parser::TreeNode *parse(const std::string &str)
 {
     int index = 0;
-    skipSpaces();
     TreeNode *result = parseF(str, index);
     return result == nullptr ? new Number(0) : result;
 }
 
 static TreeNode *Parser::parseF(const std::string &str, int &index)
 {
-
+    skipSpaces(str, index);
     if (consume(str, index, '(')) // F -> (F)
     {
         TreeNode *result = parseF(str, index);
@@ -48,7 +47,7 @@ static TreeNode *Parser::parseF(const std::string &str, int &index)
 
 static TreeNode *Parser::parseB(const std::string &str, int &index)
 {
-    skipSpaces();
+    skipSpaces(str, index);
     if (consume(str, index, '('))
     {
         TreeNode *result = parseF(str, index);
@@ -66,10 +65,10 @@ static TreeNode *Parser::parseB(const std::string &str, int &index)
 
 static void Parser::parseR(const std::string &str, int &index, TreeNode *&leftSide)
 {
-    skipSpaces();
+    skipSpaces(str, index);
 }
 
 static void Parser::parseI(const std::string &str, int &index)
 {
-    skipSpaces();
+    skipSpaces(str, index);
 }
