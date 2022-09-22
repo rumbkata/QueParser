@@ -5,7 +5,7 @@ Number::Number(const int& value)
     this->value = value;
 }
 
-int Number::eval()
+int Number::eval()const
 {
     return value;
 }

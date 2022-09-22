@@ -8,5 +8,5 @@ private:
     Number();
 public:
     Number(const int& value);
-    int eval() override;
+    int eval()const override;
 };
