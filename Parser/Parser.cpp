@@ -45,8 +45,23 @@ static TreeNode* Parser::parseF(const std::string& str, int& index)
     return ParseR(str, index, parsed);
 }
 
-static void Parser::parseB(const std::string& str, int& index)
+static TreeNode* Parser::parseB(const std::string& str, int& index)
 {
+    skipSpaces();
+    if(consume(str, index, '('))
+    {
+        TreeNode* result = parseF(str, index);
+        if(!consume(str, index, ')'))
+            //throw invalid input exception
+        return result;
+    }
+    if (isDigit(str.at(index)))
+    {
+        return parseI(str, index);
+    }
+    //throw invalid input exception
+    return nullptr;
+
 
 }
 
@@ -59,6 +74,7 @@ static void Parser::parseR(const std::string& str, int& index, TreeNode*& leftSi
 
 static void Parser::parseI(const std::string& str, int& index)
 {
+    skipSpaces();
 
 }
 
