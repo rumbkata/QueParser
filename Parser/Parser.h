@@ -12,7 +12,7 @@ public:
     static TreeNode *parseF(const std::string &, int &);
     static TreeNode *parseB(const std::string &, int &);
     static TreeNode *parseR(const std::string &, int &, TreeNode *&);
-    static void parseI(const std::string &, int &);
+    static TreeNode *parseI(const std::string &, int &);
     static TreeNode *parse(const std::string &);
 
 private:

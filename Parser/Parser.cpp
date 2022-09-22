@@ -63,9 +63,14 @@ static TreeNode *Parser::parseB(const std::string &str, int &index)
     return nullptr;
 }
 
-static void Parser::parseR(const std::string &str, int &index, TreeNode *&leftSide)
+static TreeNode* Parser::parseR(const std::string &str, int &index, TreeNode *&leftSide)
 {
     skipSpaces(str, index);
+    if (consume(str, index, '+'))
+    if (consume(str, index, '-'))
+    if (consume(str, index, '*'))
+    if (consume(str, index, '/'))
+
 }
 
 static void Parser::parseI(const std::string &str, int &index)
