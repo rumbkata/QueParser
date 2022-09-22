@@ -1,6 +1,6 @@
 #include "Negation.h"
 
-Negation::Negation(TreeNode*& term)
+Negation::Negation(TreeNode* term)
 {
     this->term = term;
 }

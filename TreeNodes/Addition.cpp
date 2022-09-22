@@ -1,5 +1,5 @@
 #include "Addition.h"
-Addition::Addition(TreeNode*& first, TreeNode*& second)
+Addition::Addition(TreeNode* first, TreeNode* second)
 {
     this->first = first;
     this->second = second;

@@ -1,6 +1,6 @@
 #include "Division.h"
 // TODO: throw exception
-Division::Division(TreeNode*& first, TreeNode*& second)
+Division::Division(TreeNode* first, TreeNode* second)
 {
     this->first = first;
     this->second = second;

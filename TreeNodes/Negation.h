@@ -6,8 +6,8 @@ class Negation :public TreeNode
 {
 private:
     TreeNode* term;
-    Negation();
+    //Negation();
 public:
-    Negation(TreeNode*&);
+    Negation(TreeNode*);
     int eval()const override;
 };

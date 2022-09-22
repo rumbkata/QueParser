@@ -16,7 +16,7 @@ public:
     static void skipSpaces(const std::string &, int &);
     static TreeNode *parseF(const std::string &, int &);
     static TreeNode *parseB(const std::string &, int &);
-    static TreeNode *parseR(const std::string &, int &, TreeNode *&);
+    static TreeNode *parseR(const std::string &, int &, TreeNode *);
     static TreeNode *parseI(const std::string &, int &);
     static TreeNode *parse(const std::string &);
 

@@ -1,4 +1,5 @@
 #include "Parser.h"
+#include "../TreeNodes/Division.h"
 
 bool Parser::consume(const std::string &str, int &index, const char &x)
 {
@@ -63,7 +64,7 @@ TreeNode *Parser::parseB(const std::string &str, int &index)
     return nullptr;
 }
 
-TreeNode *Parser::parseR(const std::string &str, int &index, TreeNode *&leftSide)
+TreeNode *Parser::parseR(const std::string &str, int &index, TreeNode *leftSide)
 {
     skipSpaces(str, index);
     if (consume(str, index, '+')) // R -> +BR
@@ -80,7 +81,7 @@ TreeNode *Parser::parseR(const std::string &str, int &index, TreeNode *&leftSide
     return nullptr;
 }
 
-void Parser::parseI(const std::string &str, int &index)
+TreeNode* Parser::parseI(const std::string &str, int &index)
 {
     std::string result;
     while (isDigit(str.at(index)))

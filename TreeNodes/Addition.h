@@ -9,6 +9,6 @@ private:
     TreeNode* second;
     Addition();
 public:
-    Addition (TreeNode*&, TreeNode*&);
+    Addition (TreeNode*, TreeNode*);
     int eval()const override;
 };
