@@ -85,14 +85,14 @@ static void Parser::parseI(const std::string &str, int &index)
     std::string result;
     while (isDigit(str.at(index)))
     {
-        result+=str.at(index++);
+        result += str.at(index++);
     }
     // calculate the number
     int number = 0;
     int power = 0;
-    for (size_t i = result.length() - 1; i >= 0; i--)
-    {
-        number += result.at(i) * pow(10, power++);
-    }
+    int len = result.length();
+    int i = len;
+    while (i-- > 0)
+        number += (result.at(i) - '0') * pow(10, power++);
     return new Number(number);
 }
