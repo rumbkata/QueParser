@@ -1,15 +1,16 @@
 #include "Division.h"
 // TODO: throw exception
-Division::Division(TreeNode*& term)
+Division::Division(TreeNode*& first, TreeNode*& second)
 {
-    this->term = term;
+    this->first = first;
+    this->second = second;
 }
 int Division::eval()const
 {
     secondValue = second->eval();
     if (secondValue == 0)
     {
-        //throw exception
+        //throw division by zero exception
     }
     return first->eval() / second->eval();
 }

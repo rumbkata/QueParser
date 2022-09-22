@@ -9,6 +9,6 @@ private:
     TreeNode* second;
     Division();
 public:
-    Division(TreeNode*& term);
+    Division(TreeNode*&, TreeNode*&);
     int eval()const override;
 };

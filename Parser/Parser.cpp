@@ -67,6 +67,7 @@ static TreeNode* Parser::parseR(const std::string &str, int &index, TreeNode *&l
 {
     skipSpaces(str, index);
     if (consume(str, index, '+'))
+        return new Addition()
     if (consume(str, index, '-'))
     if (consume(str, index, '*'))
     if (consume(str, index, '/'))
