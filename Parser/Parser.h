@@ -5,9 +5,10 @@
 
 class Parser
 {
-    public:
+public:
     Parser();
     static bool consume(const std::string&, int&, const char&);
+    static void skipSpaces(const std::string&, int&);
     static TreeNode* parseF(const std::string&, int&);
     static TreeNode* parseB(const std::string&, int&);
     static TreeNode* parseR(const std::string&, int&, TreeNode*&);
