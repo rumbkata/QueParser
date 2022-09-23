@@ -1,4 +1,6 @@
+#include "TreeNode.h"
 #include "Addition.h"
+
 Addition::Addition(TreeNode* first, TreeNode* second)
 {
     this->first = first;

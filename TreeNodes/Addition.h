@@ -1,6 +1,5 @@
-#include "TreeNode.h"
 #pragma once
-
+#include "TreeNode.h"
 
 class Addition :public TreeNode
 {

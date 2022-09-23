@@ -1,3 +1,4 @@
+#include "TreeNode.h"
 #include "Number.h"
 
 Number::Number(const int &value)

@@ -1,5 +1,5 @@
-#include "TreeNode.h"
 #pragma once
+#include "TreeNode.h"
 
 
 class Division :public TreeNode

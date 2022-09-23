@@ -1,4 +1,6 @@
 #include "Multiplication.h"
+#include "TreeNode.h"
+
 Multiplication::Multiplication(TreeNode* first, TreeNode* second)
 {
     this->first = first;

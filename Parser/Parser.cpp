@@ -1,5 +1,11 @@
 #include "Parser.h"
+#include "../TreeNodes/Negation.h"
+#include "../TreeNodes/Multiplication.h"
+#include "../TreeNodes/Addition.h"
 #include "../TreeNodes/Division.h"
+#include "../TreeNodes/Number.h"
+#include<math.h>
+#include<string>
 
 bool Parser::consume(const std::string &str, int &index, const char &x)
 {

@@ -1,3 +1,4 @@
+#include "TreeNode.h"
 #include "Division.h"
 // TODO: throw exception
 Division::Division(TreeNode* first, TreeNode* second)

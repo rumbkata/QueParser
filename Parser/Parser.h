@@ -1,11 +1,6 @@
 #pragma once
 #include<string>
-#include "../TreeNodes/Negation.h"
-#include "../TreeNodes/Multiplication.h"
-#include "../TreeNodes/Addition.h"
-#include "../TreeNodes/Division.h"
-#include "../TreeNodes/Number.h"
-#include<math.h>
+
 
 class Parser
 {

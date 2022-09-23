@@ -1,4 +1,5 @@
 #include "Negation.h"
+#include "TreeNode.h"
 
 Negation::Negation(TreeNode* term)
 {
