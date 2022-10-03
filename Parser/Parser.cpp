@@ -4,11 +4,34 @@
 #include "../TreeNodes/Addition.h"
 #include "../TreeNodes/Division.h"
 #include "../TreeNodes/Number.h"
-#include<math.h>
-#include<string>
+#include <math.h>
+#include <string>
+#include <iostream>
+
+int Parser::findClosingBracket(const std::string &str, const int &index)
+{
+    int copyOfIndex = index;
+    int counter = 0;
+    while (copyOfIndex < str.length() - 1)
+    {
+        if (str[copyOfIndex] == '(')
+            ++counter;
+        if (str[copyOfIndex] == ')')
+        {
+            if(counter == 0)
+                return copyOfIndex;
+            --counter;
+        }
+        ++copyOfIndex;
+    }
+}
 
 bool Parser::consume(const std::string &str, int &index, const char &x)
 {
+    if (index == str.length() - 1)
+    {
+        return false;
+    }
     if (str.at(index) == x)
     {
         index++;
@@ -18,6 +41,8 @@ bool Parser::consume(const std::string &str, int &index, const char &x)
 }
 void Parser::skipSpaces(const std::string &str, int &index)
 {
+    if (str.length() == index + 1)
+        return;
     while (consume(str, index, ' '))
         ;
 }
@@ -31,29 +56,14 @@ TreeNode *Parser::parse(const std::string &str)
 
 TreeNode *Parser::parseF(const std::string &str, int &index)
 {
+    std::cout << "\nparseF()";
     skipSpaces(str, index);
-    if (consume(str, index, '(')) // F -> (F)
-    {
-        TreeNode *result = parseF(str, index);
-        if (!consume(str, index, ')'))
-            // throw invalid input exception
-            return result;
-    }
-    if (consume(str, index, '+')) // F -> +F
-        return parseF(str, index);
-    if (consume(str, index, '-')) // F -> -BR
-    {
-        TreeNode *parsed = new Negation(parseB(str, index));
-        return parseR(str, index, parsed);
-    }
-    // default case: F -> BR
-    // wrong input will be dealt with in parseB call
-    TreeNode *parsed = parseB(str, index);
-    return parseR(str, index, parsed);
+    
 }
 
 TreeNode *Parser::parseB(const std::string &str, int &index)
 {
+    std::cout << "\nparseB()";
     skipSpaces(str, index);
     if (consume(str, index, '('))
     {
@@ -72,6 +82,11 @@ TreeNode *Parser::parseB(const std::string &str, int &index)
 
 TreeNode *Parser::parseR(const std::string &str, int &index, TreeNode *leftSide)
 {
+    std::cout << "\nparseR()";
+    if (index == str.length() - 1)
+    {
+        return leftSide;
+    }
     skipSpaces(str, index);
     if (consume(str, index, '+')) // R -> +BR
         return parseR(str, index, new Addition(leftSide, parseB(str, index)));
@@ -81,18 +96,19 @@ TreeNode *Parser::parseR(const std::string &str, int &index, TreeNode *leftSide)
         return parseR(str, index, new Multiplication(leftSide, parseB(str, index)));
     if (consume(str, index, '/')) // R -> /BR
         return parseR(str, index, new Division(leftSide, parseB(str, index)));
-    if (index == str.length())
-        return leftSide;
     // throw invalid input exception
     return nullptr;
 }
 
-TreeNode* Parser::parseI(const std::string &str, int &index)
+TreeNode *Parser::parseI(const std::string &str, int &index)
 {
+    std::cout << "\nparseI()";
     std::string result;
     while (isDigit(str.at(index)))
     {
         result += str.at(index++);
+        if (str.length() - 1 == index)
+            break;
     }
     // calculate the number
     int number = 0;
