@@ -6,13 +6,13 @@ using namespace std;
 
 int main()
 {
-    string input = "5+(2+3)";
+    string input = "(2 +  3)";
     while(input!="end")
     {
-        cin>>input;
         TreeNode* result = Parser::parse(input);
-        cout<<result->eval();
+        cout<<endl<<result->eval();
         cout<<endl;
+        cin>>input;
     }
     return 0;   
 }

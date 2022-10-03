@@ -6,6 +6,7 @@ class Parser
 {
 public:
     Parser();
+    static int findClosingBracket(const std::string &, const int&);
     static bool isDigit(const char &x) { return x >= '0' && x <= '9'; }
     static bool consume(const std::string &, int &, const char &);
     static void skipSpaces(const std::string &, int &);

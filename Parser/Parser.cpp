@@ -18,12 +18,13 @@ int Parser::findClosingBracket(const std::string &str, const int &index)
             ++counter;
         if (str[copyOfIndex] == ')')
         {
-            if(counter == 0)
+            if (counter == 0)
                 return copyOfIndex;
             --counter;
         }
         ++copyOfIndex;
     }
+    return -1;
 }
 
 bool Parser::consume(const std::string &str, int &index, const char &x)
@@ -58,7 +59,14 @@ TreeNode *Parser::parseF(const std::string &str, int &index)
 {
     std::cout << "\nparseF()";
     skipSpaces(str, index);
-    
+    // F -> +F
+    if (consume(str, index, '+'))
+        return parseF(str, index);
+    // F -> -BR
+    if (consume(str, index, '-'))
+        return parseR(str, index, new Addition(new Number(0), new Negation(parseB(str, index))));
+    // default case: F -> BR
+    return parseR(str, index, new Addition(new Number(0), parseB(str, index)));
 }
 
 TreeNode *Parser::parseB(const std::string &str, int &index)
@@ -72,6 +80,8 @@ TreeNode *Parser::parseB(const std::string &str, int &index)
             // throw invalid input exception
             return result;
     }
+    if (str.length() == index + 1)
+        return new Number(0); // ?????????????????????????????????
     if (isDigit(str.at(index)))
     {
         return parseI(str, index);
